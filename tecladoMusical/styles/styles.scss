@@ -1,0 +1,85 @@
+*,*::before,*::after{
+  margin: 0;
+  padding: 0;
+}
+$fondo:hsl(120,6%,15%);
+$texto:#fff;
+$dorado:rgb(179,138,16);
+$timeTransition:.5s;
+body{
+  background:$fondo;
+  color:$texto;
+}
+
+h1{
+  text-align: center;
+  margin-top: 1em;
+  font-size: 2.5em;
+}
+main{
+  display: flex;
+  align-items: center;
+  width: 90%;
+  margin: auto;
+  justify-content: center;
+  height: 80vh;
+}
+
+.key{
+  width: 100px;
+  padding: 2em;
+  margin:10px 20px;
+  border:1px solid lighten($dorado,.1);
+  transition: all $timeTransition;
+  span{
+    width: 100%;
+    text-align: center;
+    display: block;
+    font-size: 3em;
+    &.spain{
+      font-size: 1em;
+    }
+  }
+  &.press,&:hover{
+    transform: scale(1.1);
+    box-shadow: 0px 1px 5px $dorado;
+    background-color: lighten($fondo,.9);
+    color:lighten($dorado,30%);
+    cursor: pointer;
+  }
+
+}
+
+.tooltip{
+  display : inline-block;
+  padding:.2em;
+  position : relative;
+  cursor: pointer;
+  font-size: .4em;
+  width: 10px;
+  height: 20px;
+  border-radius: 50%;
+  background: $dorado;
+  &:hover {
+    &::before {
+      display : block;
+    }
+  }
+
+
+  &::before {
+    content: attr(data-tooltip);
+    display : none;
+    color: $texto;
+    position : absolute;
+    background : darken($fondo,5%);
+    font-size : 1rem;
+    font-style: italic;
+    font-weight : normal;
+    top : 100%;
+    min-width: 10em;
+    padding : .5em .5em;
+    border:1px solid darken($dorado,10%);
+  }
+
+}
