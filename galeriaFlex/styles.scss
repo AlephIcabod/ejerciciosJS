@@ -5,7 +5,10 @@
 body{
   margin:0;
   padding: 0;
-  background: hsl(230,10%,20%);
+  background: linear-gradient(45deg,hsl(230,20%,45%),
+  hsl(230,10%,30%),
+  hsl(230,20%,45%));
+  height: 100vh;
 }
 *,*::after,*::before{
   box-sizing: border-box;
@@ -38,28 +41,20 @@ font-family: 'Satisfy', cursive;
   transition: flex cubic-bezier(0.68, 0.18, 0.34, 0.59) .8s,
               transform cubic-bezier(0.68, 0.18, 0.34, 0.59) .5s;
 
-
-  @for $i from 1 through 5{
-    &:nth-of-type(#{$i}){
-      order:$i;
-    }
+  &.active{
+    flex:5;
+    transform: scaleY(1.1);
+    box-shadow: 0 0 10px 3px  rgba(255,255,255,.5);
+    z-index: 100;
   }
-
+  img, .text{
+   position: absolute;
+   top: 0;
+   min-height: 100%;
+ }
 
 }
 
-.panel.active{
-  flex:5;
-  transform: scaleY(1.1);
-  box-shadow: 0 0 10px 3px  rgba(255,255,255,.5);
-  z-index: 100;
-}
-
-.panel img,.panel .text{
-  position: absolute;
-  top: 0;
-  min-height: 100%;
-}
 
 .text{
   display: flex;
@@ -82,21 +77,22 @@ font-family: 'Satisfy', cursive;
   align-items: center;
   text-align: center;
   width: 100%;
-}
-.text *:first-child{
+
+&:first-child{
   align-items: flex-start;
   font-size: 20px;
   transform: translateY(-100%);
   transition: transform ease-out .8s;
 }
-.text *:last-child{
+&:last-child{
   align-items: flex-end;
   font-size: 20px;
   transform: translateY(100%);
   transition: transform ease-out .5s;
 }
 
-.text *:last-child.active,.text *:first-child.active{
+&:last-child.active,&:first-child.active{
   transform: translateY(0);
   align-items: center;
+}
 }
